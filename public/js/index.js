@@ -1,8 +1,8 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $exampleText = $("#activityfinder");
+var $exampleDescription = $("#activityfinder");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $exampleList = $("#activityfinder-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
