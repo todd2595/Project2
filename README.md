@@ -20,7 +20,3 @@ You will be employer-competitive if you are able to:
 * Explain and implement unit tests
 * Design, build and deploy a full-stack web application to Heroku
 
-## Helpful Links
-[Mocha JS Docs](https://mochajs.org/)
-[Chai JS Docs](https://www.chaijs.com/)
-[Agile Methodology](https://en.wikipedia.org/wiki/Agile_software_development)
