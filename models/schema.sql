@@ -1,5 +1,3 @@
 DROP DATABASE IF EXISTS acitivtyFinder;
 CREATE DATABASE acitivtyFinder;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
