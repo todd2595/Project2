@@ -12,9 +12,5 @@ var sequelize = new Sequelize("GroupFinder", "root", "Panzer19382", {
   }
 });
 
-<<<<<<< HEAD
-module.exports = sequelize;
-=======
 // Exports the connection for other files to use
 module.exports = sequelize;
->>>>>>> 3626e554728ba2323f7121af4a20ef9d02c8b65f
