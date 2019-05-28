@@ -4,37 +4,169 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Activity Advisor</title>
+    <!-- Our CSS Stylesheet -->
+    <!--  Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
+    <link rel="stylesheet" href="styles/styles.css">
+
+
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <!-- Leftlet CSS Stylesheet: -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <!-- LeafleftJS CDN Javascript -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <style>
         #placeholder {
             padding: 45px;
             text-align: center;
         }
     </style>
+
 </head>
 
 <body>
-    <div class="container" id="placeholder">
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4"> Activity Advisor</h1>
-            </div>
-        </div>
+        <section class="hero rounded">
+                <div class="hero-inner" >
+                        <h1 class="ml1">
+                                <span class="text-wrapper">
+                                  <span class="line line1"></span>
+                                  <span class="letters">Activity Advisor</span>
+                                  <span class="line line2"></span>
+                                </span>
+                              </h1>
+                    <span class="header-text resizedP"></span>
+                    <h3 class="ml2">Everything is better with a friend</h3>
+                    
+                </div>
+              
+            </section>
 
-    <a href="results.html" button type="button" class="btn btn-primary btn-lg btn-block">Show All</button>
-     <a href="map.html" button type="button" class="btn btn-secondary btn-lg btn-block">Show Locations</button>
+            <div class="container" id="placeholder">
+                    <div class="row">
+                            <!-- <div class="title"> -->
+                                <div class="title">
+                                <span>
+                                    <h1 class="header-text">
+                                        What's Going On Around You?
+                                    </h1>
+                                </span>
+                            </div>
 
-    </div>
-</body>
+                                <div id="mapid">
+                                
+                                </div>
+                            </div>
+                    </div>
+            
+                <a href="results.html" button type="button" class="btn btn-primary btn-lg btn-block">Show All</button>
+                 <a href="map.html" button type="button" class="btn btn-secondary btn-lg btn-block">Show Locations</button>
+            
+                </div>
+            </body>
+<script>
+    
+// Wrap every letter in a span 
 
-</html>
+// Activity Advisor animation JS 
+$('.ml1 .letters').each(function(){
+  $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+});
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml1 .letter',
+    scale: [0.3,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 100,
+    delay: function(el, i) {
+      return 70 * (i+1)
+    }
+  }).add({
+    targets: '.ml1 .line',
+    scaleX: [0,1],
+    opacity: [0.5,1],
+    easing: "easeOutExpo",
+    duration: 700,
+    offset: '-=875',
+    delay: function(el, i, l) {
+      return 80 * (l - i);
+    }
+  }).add({
+    targets: '.ml1',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 7000
+  });
+
+// "Everything is better with a friend" Javascript animation 
+
+$('.ml2').each(function(){
+  $(this).html($(this).text().replace(/([^.\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+});
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml2 .letter',
+    scale: [3,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 700,
+    delay: function(el, i) {
+      return 70*i;
+    }
+  }).add({
+    targets: '.ml2',
+    opacity: 0,
+    duration: 700,
+    easing: "easeOutExpo",
+    delay: 70000
+  })
+  
+  var mymap = L.map('mapid').setView([39.9526, -75.1652], 13);
+
+  var greenIcon = L.icon({
+    iconUrl: 'https://cdn1.iconfinder.com/data/icons/human-8/48/370-512.png',
+    // shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [28, 25], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+  L.marker([39.9526, -75.1652], {icon: greenIcon}).addTo(mymap).bindPopup("This is an event going on at!");
+  // L.marker([39.9526, -75.1652], {icon: icons}).addTo(mymap).bindPopup("example text");
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiYXlvaXRzcmljaCIsImEiOiJjancxYmJ4YXUwazVnNDBtbWhmdmNtamdlIn0.loO3yUdBXNmMucvPTrmnCw'
+}).addTo(mymap);
+
+</script>
+
+
+</html> 
