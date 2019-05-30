@@ -7,10 +7,10 @@ module.exports = function(app) {
     });
   });
   //all locations
-  app.get("/api/map", function(req, res){
+  app.get("/api/map", function(req, res) {
     db.GroupFinder.findAll({
       attributes: ["location"]
-    }).then(function(dbBook){
+    }).then(function(dbBook) {
       res.json(dbBook);
     });
   });
