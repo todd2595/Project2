@@ -5,15 +5,18 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.sendFile(path.join(__dirname, "../public/html/index.html"));
   });
 
   app.get("/map", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/map.html"));
+    res.sendFile(path.join(__dirname, "../public/html/map.html"));
   });
 
   // blog route loads blog.html
+  app.get("/add", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/add.html"));
+  });
   app.get("/results", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/results.html"));
+    res.sendFile(path.join(__dirname, "../public/html/results.html"));
   });
 };
