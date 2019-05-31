@@ -10,10 +10,15 @@
 //   }
 // }
 // createBtn();
-
+// $(".category").on("click", function(){
+// $("#category") = this.val();
+// })
 function UpFirst(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
+// function RemoveSpaces(string) {
+//   return string.replace(/\s+/g, " ").trim();
+// }
 
 $("#add-btn").on("click", function(event) {
   event.preventDefault();
@@ -37,9 +42,13 @@ $("#add-btn").on("click", function(event) {
     comments: $("#comments").val()
     // .then(comments.substring(0, 150))
   };
-  console.log(newBooking.activity);
-  UpFirst(newBooking.activity);
-  // UpFirst(newBooking.location);
+  newBooking.activity = UpFirst(newBooking.activity);
+  newBooking.location = UpFirst(newBooking.location);
+  newBooking.activity = newBooking.activity.replace(/\s+/g, " ").trim();
+  newBooking.location = newBooking.location.replace(/\s+/g, " ").trim();
+  console.log(newBooking);
+  // newBooking.comments = newBooking.comments.replace(/\s+/g, " ").trim();
+
   // send an AJAX POST-request with jQuery
   $.post("/api/bookings/", newBooking)
     // on success, run this callback

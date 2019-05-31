@@ -1,8 +1,18 @@
 var db = require("../models");
+var moment = require("moment");
+moment().format();
 module.exports = function(app) {
   // Get all examples
   app.get("/api/bookings/", function(req, res) {
-    db.GroupFinder.findAll({}).then(function(dbBook) {
+    db.GroupFinder.findAll({
+      where: {
+        createdAt: {
+          $gte: moment()
+            .subtract(8, "days")
+            .toDate()
+        }
+      }
+    }).then(function(dbBook) {
       res.json(dbBook);
     });
   });
@@ -18,10 +28,10 @@ module.exports = function(app) {
     db.GroupFinder.create({
       activity: req.body.activity,
       location: req.body.location,
-      startTime: req.body.startTime,
-      endTime: req.body.endTime,
-      people: req.body.people,
-      comments: req.body.comments
+      StartTime: req.body.startTime,
+      EndTime: req.body.endTime,
+      people: req.body.people
+      // comments: req.body.comments
     })
       .then(function(dbentry) {
         console.log(dbentry);
@@ -36,10 +46,10 @@ module.exports = function(app) {
   });
 
   // Create a new example
-  app.post("/api/bookings/location/:location", function(req, res) {
+  app.post("/api/bookings/category/:category", function(req, res) {
     db.GroupFinder.findAll({
       where: {
-        location: req.params.location
+        category: req.params.category
       }
     }).then(function(dbPost) {
       res.json(dbPost);

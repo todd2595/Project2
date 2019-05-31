@@ -19,8 +19,8 @@
 
     <div class="container">
         <div class="jumbotron">
-            <h1>Star Wars Express</h1>
-            <h3>The greatest resource in the galaxy for Star Wars statistics!</h3>
+            <h1>Activity Advisor</h1>
+            <h3></h3>
             <hr>
             <a href="/" class="btn btn-danger btn-lg">
                 <span class="fa fa-eye"></span> Search Characters</a>
@@ -50,16 +50,20 @@
                                     <div class="input-group-prepend">
                                       <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
                                       <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" class="category" value="Art">Art</a>
+                                        <a class="dropdown-item" class="category" value="Sport">Sport</a>
+                                        <a class="dropdown-item" class="category" value="Liesure">Liesure</a>
+                                        <a class="dropdown-item" class="category" value="Party">Party</a>
+                                        <a class="dropdown-item" class="category" value="Music">Music</a>
                                         <div role="separator" class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
                                       </div>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                    <input type="text" class="form-control" id="category" aria-label="Text input with dropdown button">
                                   </div>
-
+                                  <!-- <div class="form-group">
+                                    <label for="exampleFormControlInput1">Activity Date</label>
+                                    <input type="date" class="form-control" id="UserDate" placeholder="MM/DD/YYYY">
+                                  </div> -->
                             <div class="form-group">
                                 <label for="">Start Time</label>
                                 <input type="text" class="form-control" id="startTime" placeholder="12:00pm">
