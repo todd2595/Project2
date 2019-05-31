@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS GroupFinder;
-CREATE DATABASE GroupFinder;
+DROP DATABASE IF EXISTS acitivtyFinder;
+CREATE DATABASE acitivtyFinder;
 
