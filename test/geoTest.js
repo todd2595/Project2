@@ -1,3 +1,4 @@
+var leafletgeo = require(leaflet-geosearch)
 var mymap = L.map("mapid", {
     doubleClickZoom: false
 }).setView([39.9526, -75.1652], 13);
@@ -66,7 +67,35 @@ function onLocationFound(e) {
 
 $("#track-location").on("click", function() {
   mymap.on("locationfound", onLocationFound);
+
+
+function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+    L.marker(e.latlng).addTo(mymap)
+      .bindPopup("You are within " + radius + " meters from this point").openPopup();
+    L.circle(e.latlng, radius).addTo(mymap);
+  }
+  
+  mymap.on('locationfound', onLocationFound);
+  mymap.locate({
+    setView: true,
+    watch: true,
+    enableHighAccuracy: true,
+    maxZoom: 14
+  });
 });
 
+import {
+    GeoSearchControl,
+    OpenStreetMapProvider,
+  } from 'leaflet-geosearch';
+  
+  const provider = new OpenStreetMapProvider();
+  
+  const searchControl = new GeoSearchControl({
+    provider: provider,
+  });
+  
 
+  mymap.addControl(searchControl);
 // ======================================================================================
