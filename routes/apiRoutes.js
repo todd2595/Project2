@@ -3,6 +3,14 @@ var moment = require("moment");
 moment().format();
 module.exports = function(app) {
   // Get all examples
+  app.get("/api/search/:searchTerm", function(req, res) {
+    db.GroupFinder.findOne({
+      //   where: {
+      //     SearchTerm: req.body.SearchTerm
+      //   }
+    });
+  });
+
   app.get("/api/bookings/", function(req, res) {
     db.GroupFinder.findAll({
       where: {
@@ -25,12 +33,17 @@ module.exports = function(app) {
     });
   });
   app.post("/api/bookings/", function(req, res) {
+    console.log(req.body);
     db.GroupFinder.create({
       activity: req.body.activity,
       location: req.body.location,
-      StartTime: req.body.startTime,
-      EndTime: req.body.endTime,
-      people: req.body.people
+      date: req.body.date,
+      startTime: req.body.startTime,
+      endTime: req.body.endTime,
+      comments: req.body.comments,
+      searchTerm: req.body.searchTerm,
+      category: req.body.category
+
       // comments: req.body.comments
     })
       .then(function(dbentry) {

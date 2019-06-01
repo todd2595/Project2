@@ -1,66 +1,56 @@
-// var tags = ["music", "art", "sports", "lesiure", "party"];;
-// function createBtn() {
-//   $("#buttons").empty();
-//   for (i = 0; i < tags.length; i++) {
-//     var tagBtn = $("<button>");
-//     tagBtn.addClass("tag");
-//     tagBtn.attr("data-tag", tags[i]);
-//     tagBtn.text(players[i]);
-//     $("#buttons").append(tagBtn);
-//   }
-// }
-// createBtn();
-// $(".category").on("click", function(){
-// $("#category") = this.val();
-// })
-function UpFirst(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
-// function RemoveSpaces(string) {
-//   return string.replace(/\s+/g, " ").trim();
-// }
+$(document).ready(function() {
+  let UserCategory;
+  function UpFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
+  var randomNumber = Math.floor(Math.random() * Math.floor(1000000));
+  console.log(randomNumber);
+  $(".activityClass").on("click", function(e) {
+    e.preventDefault();
+    let UserCategory = $(this).val()
+    console.log(UserCategory);
+    document.getElementById("category").value = UserCategory;
+  });
 
-$("#add-btn").on("click", function(event) {
-  event.preventDefault();
-  // make a newCharacter obj
-  var newBooking = {
-    activity: $("#activity")
-      .val()
-      .trim(),
-    location: $("#location")
-      .val()
-      .trim(),
-    startTime: $("#startTime")
-      .val()
-      .trim(),
-    endTime: $("#endTime")
-      .val()
-      .trim(),
-    people: $("#people")
-      .val()
-      .trim(),
-    comments: $("#comments").val()
-    // .then(comments.substring(0, 150))
-  };
-  newBooking.activity = UpFirst(newBooking.activity);
-  newBooking.location = UpFirst(newBooking.location);
-  newBooking.activity = newBooking.activity.replace(/\s+/g, " ").trim();
-  newBooking.location = newBooking.location.replace(/\s+/g, " ").trim();
-  console.log(newBooking);
-  // newBooking.comments = newBooking.comments.replace(/\s+/g, " ").trim();
+  $("#add-btn").on("click", function(event) {
+    event.preventDefault();
+    // var radioValue = $("input[name='1']:checked").val();
+    // console.log(radioValue);
+    var newBooking = {
+      activity: $("#activity")
+        .val()
+        .trim(),
+      location: $("#location").val(),
+      date: $("#date").val(),
+      startTime: $("#startTime").val(),
+      endTime: $("#endTime").val(),
+      comments: $("#comments").val(),
+      searchTerm: randomNumber,
+      category: document.getElementById("category").value
+      // if (!(example.text && example.description)) {
+      //   alert("You must enter an example text and description!");
+      //   return;
+      // .then(comments.substring(0, 150))
+    };
+    newBooking.activity = UpFirst(newBooking.activity);
+    newBooking.activity = newBooking.activity.replace(/\s+/g, " ").trim();
+    // newBooking.location = newBooking.location.replace(/\s+/g, " ").trim();
+    // newBooking.comments = newBooking.comments.substring(0, 150);
+    // newBooking.comments = newBooking.comments.replace(/\s+/g, " ").trim();
 
-  // send an AJAX POST-request with jQuery
-  $.post("/api/bookings/", newBooking)
-    // on success, run this callback
-    .then(function() {
+    // send an AJAX POST-request with jQuery
+    $.post("/api/bookings/", newBooking).then(function() {
       // tell the user we're adding a character with an alert window
+      console.log(newBooking);
       alert("Added activity! Go check the map on first page");
     });
 
-  // empty each input box by replacing the value with an empty string
-  $("#activity").val("");
-  $("#location").val("");
-  $("#startTime").val("");
-  $("#endTime").val("");
-  $("#people").val("");
+    // empty each input box by replacing the value with an empty string
+    // $("#activity").val("");
+    // $("#location").val("");
+    // $("#date").val("");
+    // $("#comment").val("");
+    // $("#startTime").val("");
+    // $("#endTime").val("");
+  });
 });
