@@ -8,25 +8,31 @@ $(document).ready(function() {
   $(".activityClass").on("click", function(e) {
     e.preventDefault();
     let UserCategory = $(this).val()
-    console.log(UserCategory);
-    document.getElementById("category").value = UserCategory;
+    document.getElementById("category").value = UserCategory
   });
 
   $("#add-btn").on("click", function(event) {
     event.preventDefault();
+    let location = $("#location").val()
+    let Location = location.split(",")
+    let long = Location[0];
+    let lat = Location[1];
+console.log(long, lat)
     // var radioValue = $("input[name='1']:checked").val();
     // console.log(radioValue);
     var newBooking = {
       activity: $("#activity")
         .val()
         .trim(),
+      long: long,
+      lat: lat,
       location: $("#location").val(),
       date: $("#date").val(),
       startTime: $("#startTime").val(),
       endTime: $("#endTime").val(),
       comments: $("#comments").val(),
       searchTerm: randomNumber,
-      category: document.getElementById("category").value
+      category: $("#category").val().trim()
       // if (!(example.text && example.description)) {
       //   alert("You must enter an example text and description!");
       //   return;
@@ -34,9 +40,10 @@ $(document).ready(function() {
     };
     newBooking.activity = UpFirst(newBooking.activity);
     newBooking.activity = newBooking.activity.replace(/\s+/g, " ").trim();
+
     // newBooking.location = newBooking.location.replace(/\s+/g, " ").trim();
     // newBooking.comments = newBooking.comments.substring(0, 150);
-    // newBooking.comments = newBooking.comments.replace(/\s+/g, " ").trim();
+    newBooking.comments = newBooking.comments.replace(/\s+/g, " ").trim();
 
     // send an AJAX POST-request with jQuery
     $.post("/api/bookings/", newBooking).then(function() {
@@ -46,11 +53,11 @@ $(document).ready(function() {
     });
 
     // empty each input box by replacing the value with an empty string
-    // $("#activity").val("");
-    // $("#location").val("");
-    // $("#date").val("");
-    // $("#comment").val("");
-    // $("#startTime").val("");
-    // $("#endTime").val("");
+    $("#activity").val("");
+    $("#location").val("");
+    $("#date").val("");
+    $("#comment").val("");
+    $("#startTime").val("");
+    $("#endTime").val("");
   });
 });

@@ -42,7 +42,9 @@ module.exports = function(app) {
       endTime: req.body.endTime,
       comments: req.body.comments,
       searchTerm: req.body.searchTerm,
-      category: req.body.category
+      category: req.body.category,
+      lat: req.body.lat,
+      long: req.body.long
 
       // comments: req.body.comments
     })

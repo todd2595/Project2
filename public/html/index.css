@@ -3,12 +3,8 @@
   }
   
   body {
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
     background-color: white;
-  }
-  .header-text {
-    text-shadow: 1px 1px;
-    font-family: cursive;
   }
   
   .container {
@@ -34,6 +30,20 @@
     padding-top: 10px;
     font-weight: bold;
     text-decoration: underline;
+    text-shadow: 1px 1px;
+    font-family: cursive;
+  }
+
+  .headerText {
+    text-align: center;
+    color: white;
+    height: 50px;
+    font-size: 62px;
+    padding-top: 10px;
+    font-weight: bold;
+    text-decoration: underline;
+    text-shadow: 1px 1px;
+    font-family: cursive;
   }
   
   p {

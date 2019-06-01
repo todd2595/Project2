@@ -28,6 +28,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
+    lat: {
+      type: DataTypes.DECIMAL(12, 10),
+      allowNull: true
+    },
+    long: {
+      type: DataTypes.DECIMAL(12, 10),
+      allowNull: true
+    },
     comments: {
       type: DataTypes.STRING,
       allowNull: true,
