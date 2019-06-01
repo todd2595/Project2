@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 $(document).ready(function() {
   var pinLayer = L.layerGroup();
   var mymap = L.map("mapid").setView([39.9526, -75.1652], 13);
@@ -91,9 +92,9 @@ $(document).ready(function() {
         "End Time: ": data[i].endTime,
         "Description: ": data[i].comments
       };
-      // console.log(data[i].long, data[i].lat);
-      // var latLng = L.latLng(data[i].lat, data[i].long);
-      // L.marker(latLng, { icon: x })
+      console.log(data[i].long, data[i].lat);
+      var latLng = L.latLng(data[i].lat, data[i].long);
+      L.marker(latLng, { icon: x });
       //   .addTo(pinLayer)
       //   .addTo(mymap)
       //   .bindPopup(entry);
