@@ -1,38 +1,47 @@
 module.exports = function(sequelize, DataTypes) {
   var GroupFinder = sequelize.define("GroupFinder", {
     activity: {
-      type: DataTypes.STRING
-      // allowNull: false
+      type: DataTypes.STRING,
+      allowNull: true
     },
-    // UnlimitedTime: {
-    //   type: Datatypes.BOOLEAN,
-    //   defaultValue: false
-    // },
-    StartTime: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      validate: {
-        len: [5]
-      }
+    category: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
-    EndTime: {
+    date: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    startTime: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    searchTerm: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      validate: {
-        len: [5]
-      }
+      allowNull: true
+    },
+    endTime: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     location: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    people: {
-      type: DataTypes.INTEGER,
+    lat: {
+      type: DataTypes.DECIMAL(12, 10),
+      allowNull: true
+    },
+    long: {
+      type: DataTypes.DECIMAL(12, 10),
       allowNull: true
     },
     comments: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      validate: {
+        len: [0, 120]
+      }
     }
   });
   return GroupFinder;

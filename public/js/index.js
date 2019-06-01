@@ -1,95 +1,117 @@
-// Get references to page elements
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
-// var $submitBtn = $("#submit");
-// var $exampleList = $("#example-list");
-
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "/api/bookings/",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "/api/bookings/",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/bookings/" + id,
-      type: "DELETE"
-    });
-  }
-};
-
-API.getExamples();
-// refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function() {
-//   API.getExamples().then(function(data) {
-//     var $examples = data.map(function(example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(newBooking).then(function() {
-    refreshExamples();
+/* eslint-disable prettier/prettier */
+$(document).ready(function() {
+  var pinLayer = L.layerGroup();
+  var mymap = L.map("mapid").setView([39.9526, -75.1652], 13);
+  mymap.addLayer(pinLayer);
+  L.tileLayer(
+    "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
+    {
+      attribution:
+        "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+      maxZoom: 18,
+      id: "mapbox.streets",
+      accessToken:
+        "pk.eyJ1IjoiYXlvaXRzcmljaCIsImEiOiJjancxYmJ4YXUwazVnNDBtbWhmdmNtamdlIn0.loO3yUdBXNmMucvPTrmnCw"
+    }
+  ).addTo(mymap);
+  var art = L.icon({
+    iconUrl: "../styles/pics/museum_paintings.png",
+    iconSize: [38, 45], // size of the icon
+    iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
   });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+  var sport = L.icon({
+    iconUrl: "../styles/pics/music.png",
+    iconSize: [38, 45],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
   });
-};
+  var leisure = L.icon({
+    iconUrl: "../styles/pics/leisure.png",
+    iconSize: [38, 45],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+  });
+  var party = L.icon({
+    iconUrl: "../styles/pics/party-2.png",
+    iconSize: [38, 45],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+  });
+  var trade = L.icon({
+    iconUrl: "../styles/pics/music.png",
+    iconSize: [38, 45],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+  });
+  L.marker([-75.16505813677215, 39.95343802330849]);
+  var API = {
+    saveExample: function(example) {
+      return $.ajax({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        type: "POST",
+        url: "api/examples",
+        data: JSON.stringify(example)
+      });
+    },
+    getExamples: function() {
+      return $.ajax({
+        url: "api/bookings",
+        type: "GET"
+      });
+    },
+    deleteExample: function(id) {
+      return $.ajax({
+        url: "api/examples/" + id,
+        type: "DELETE"
+      });
+    }
+  };
+  API.getExamples().then(function(data) {
+    // console.log(data[0].category);
+    for (var i = 0; i < data.length; i++) {
+      var category = data[i].category;
+      console.log(data[i]);
+      if (category === "Art") {
+        var x = art;
+      } else if (category === "Sport") {
+        var x = sport;
+      } else if (category === "Leisure") {
+        var x = leisure;
+      } else if (category === "Party") {
+        var x = party;
+      } else if (category === "Trade") {
+        var x = trade;
+      }
+      var entry = {
+        "Activity: ": data[i].activity,
+        "Date: ": data[i].date,
+        "Start Time: ": data[i].startTime,
+        "End Time: ": data[i].endTime,
+        "Description: ": data[i].comments
+      };
+      console.log(data[i].long, data[i].lat);
+      var latLng = L.latLng(data[i].lat, data[i].long);
+      L.marker(latLng, { icon: x });
+      //   .addTo(pinLayer)
+      //   .addTo(mymap)
+      //   .bindPopup(entry);
+      // console.log(data[i]);
+      var geojson = {
+        type: "Feature",
+        properties: {
+          "name": data[i].activity,
+          "popupContent": entry
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [data[i].lat, data[i].long]
+        }
+      };
+      L.geoJSON(geojson).addTo(mymap);
+    }
+  });
+});
