@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Activity Advisor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+    <link rel="stylesheet" href="../public/styles/styles.css">
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+     integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    
+        <style>
+        #placeholder{
+            text-align: center
+        }
+        </style>
+
+</head>
+
+<body>
+    <div class="container">
+            <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4"> Activity Advisor</h1>
+                    </div>
+                    <form>
+                            <div class="form-group">
+                                    <label for="exampleFormControlInput1">Activity Title</label>
+                                    <input type="text" class="form-control" id="titleinput" placeholder="Activity Title">
+                            </div>  <div class="form-group">
+                                        <label for="exampleFormControlInput1">Activity Date</label>
+                                        <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY">
+                                      </div>
+
+                    <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputEmail4">Activity Start</label>
+                              <input type="number" class="form-control" id="inputstarttime" placeholder="Start Time">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputPassword4">Activity End</label>
+                              <input type="number" class="form-control" id="inputendtime" placeholder="End Time">
+                            </div>
+                            <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                  </div>
+                          </div>
+                          <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <button class="btn btn-outline-secondary" type="button" id="track-location">Track Location</button>
+                                </div>
+                                <input id="latlngBttn" type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                              </div>
+                             
+                                  <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Example textarea</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                          </div>
+                                    <div class="form-group">
+                                      <label for="exampleFormControlFile1">Discription</label>
+                                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    </div>
+                                    <div id="mapid"></div>
+                                    
+                                  </form>
+</div>
+        
+       
+<!-- Activity Name, Activity Date, Start/End Time, Location, Discription, Content Upload,  -->
+        
+    </div>
+
+<script src="../test/geoTest.js"></script>
+</body>
+
+</html>
